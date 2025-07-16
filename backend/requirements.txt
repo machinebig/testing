@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pydantic
+sqlalchemy
+passlib
+python-jose
+langchain
+openai
+evaluate
