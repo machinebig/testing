@@ -1,0 +1,7 @@
+.env
+*.pyc
+__pycache__/
+*.log
+backend/migrations/versions/*
+backend/genai_validator.db
+frontend/static/images/*.png
