@@ -1,0 +1,24 @@
+I want to build a production-ready API that takes any video as input and converts the speech in the video to another language of my choice while retaining the original speaker’s voice and facial expressions. The converted video should make it appear as if the speaker is natively speaking the target language, with perfect lip-sync and emotions matching the translated audio. 
+
+Here’s what I want you to provide: 
+
+1. A **full project folder structure** for the API, using FastAPI or Flask. 
+2. Sample **Python code for each file**, including:
+   - Speech-to-Text (STT) service using **Whisper** for multilingual transcription.
+   - Translation service using **MarianMT** or **mBART50** for translating between 15+ languages (e.g., Hindi, French, German, Tamil, Kannada, Spanish, Punjabi, Marathi, Sanskrit, etc.).
+   - Cross-lingual voice conversion service that converts the original speaker’s voice into the target language speech using **RVC (Retrieval-based Voice Conversion)** or **YourTTS** (not random TTS voices).
+   - Lip-sync service using **Wav2Lip** for aligning the mouth movements to the new audio.
+   - Video processing utilities using **ffmpeg** for merging audio and video.
+3. Include a **test script** (Python) that sends a sample video to the API and checks the full pipeline from input to output video.
+4. Provide a **requirements.txt** file listing all dependencies.
+5. Provide a **Dockerfile** so the app can be deployed easily.
+6. Make it **production ready**, modular, and clean, with support for adding more languages in the future.
+
+The goal is to create a multilingual video translator app where **any speaker in any video** can speak in **any target language** with their own voice and proper lip sync.
+
+✅ Do NOT use generic TTS voices. I want the **original speaker’s voice** to speak the translated language.  
+✅ Do NOT skip any code. Provide **full code** for all files and services.  
+✅ Keep everything open-source (no paid APIs).  
+✅ Assume this needs to support **15 languages** bidirectionally (e.g., Hindi to French, Marathi to Tamil, Spanish to Kannada, and vice versa).
+
+Give me the **exact full code base with folder structure** and sample test file in one response.
