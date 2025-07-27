@@ -1,0 +1,120 @@
+I'm building a GenAI Validator web application using Streamlit to evaluate outputs of generative models (code, text, RAG, etc.). The current UI is basic and needs to be improved to match modern AI evaluation platforms. Please update the app with the following requirements:
+
+1. 🔐 **Login Page with Background Video**:
+   - The uploaded background video currently behaves like a playable video. Change it to **autoplay, muted, looped, full-screen background**, without video controls.
+   - Overlay a **login form** at the center with the current login methods 	
+   - Apply a **slight blur or dark overlay** on the video for better visibility of text.
+   - Store auth state in st.session_state and redirect to dashboard after login.
+   - Move the logged-in username to the **top-right** with a dropdown (Profile, Settings, Logout). Add a light/dark theme toggle.
+
+
+2. 🧠 **Main Dashboard Layout**:
+   - Add a **top navigation bar**:
+     - App logo + "GenAI Validator" name.
+     - **User info dropdown** (profile name and logout) at the top-right corner.
+   - check current frontend and make changes as necessary .Add a **left vertical navigation bar** using `st.sidebar` or a custom design with sections like:
+     - Dashboard
+     - Upload
+     - Evaluation
+     - Metrics
+     - Results
+     - Settings.
+   -  Main workspace uses a **stepper/tab** flow for evaluation:
+   	Step 1: Inputs (Prompt / File Upload / Model Output)
+   	Step 2: Select Use Case & Evaluation Focus
+   	Step 3: Pick Metrics
+   	Step 4: Run
+   	Step 5: Results, Graphs, Download
+   - Use responsive columns, cards, shadows, rounded corners, and consistent spacing via custom CSS.
+
+3. 📂 **Input & Upload**:
+   - Add a **file upload button** (supporting `.txt`, `.py`, `.csv`, `.json`, etc.).
+   - Enable **drag-and-drop file upload**.
+   - Show a file name preview ,file type icon, sizeand option to remove/replace the file.
+   - Allow multiple samples (batch eval) + evaluation queue with run history.
+
+4. ⚙️ **Metrics & Evaluation Types**:
+   - All evaluation types (e.g., Code Generation, Summarization, RAG, Chatbot QA) should have common **metric categories like  Accuracy, Bias, Toxicity, Hallucination, Consistency, Robustness/Security, Maintainability, Coverage, etc.**Based on the selected Use Case + Focus, dynamically render only the relevant metrics.
+   - For each category, list the **available tools/models** dynamically what has been added in the original/current code:if not available add as well
+   **Use Cases (examples):**
+- Code Generation
+- RAG / Retrieval QA
+- Summarization
+- Chatbot Q&A
+- Image Generation (caption/toxicity/NSFW)
+- Prompt/Guardrail Testing
+
+**Evaluation Focus → Metrics/Tools (non-exhaustive, but wire them modularly):**
+
+1) **Accuracy / Correctness / Quality**
+   - LLM-as-a-Judge (self-consistency, majority vote)
+   - G-Eval / Prometheus
+   - Pass@k (code)
+   - Exact Match, BLEU, ROUGE, METEOR, BERTScore, BLEURT
+   - CodeBLEU (code), Unit-test pass rate, Functional tests
+   - QAFactEval / FactCC / QAGS (summarization & RAG)
+   - Faithfulness (RAG hallucination detection)
+   - Response Relevancy (RAG)
+
+2) **Bias / Fairness**
+   - G-Eval fairness rubric
+   - StereoSet / CrowS-Pairs style probes
+   - Custom bias templates (allocational/representational harms)
+   - LLM-as-a-Judge bias rubric scoring
+
+3) **Toxicity / Safety / Harm**
+   - Detoxify
+   - OpenAI Moderation / Azure Content Safety
+   - Perspective API
+   - Hate/Violence/Sexual content flags
+
+4) **Hallucination / Factual Consistency**
+   - TruthfulQA-style checks
+   - RAG Groundedness / Faithfulness scores
+   - QAFactEval, FactCC, LLM-as-a-Judge factuality rubric
+
+5) **Security / Robustness (esp. for code)**
+   - Bandit / Semgrep (static analysis)
+   - Prompt injection detectors
+   - Jailbreak scorecards
+
+6) **Maintainability / Complexity (code)**
+   - Cyclomatic Complexity
+   - Maintainability Index
+   - Pylint/Flake8 score
+
+7) **Coverage (code)**
+   - coverage.py integration (statement/branch coverage)
+
+8) **Latency / Cost / Tokens**
+   - Time to generate
+   - Tokens in/out, $ cost (if applicable)
+
+   - Use **multi-select with tooltips** explaining each metric/model.
+
+5. 📊 **Results Display**:
+   - After evaluation, show **clear, interactive visualizations**:
+     - Charts (bar, pie, radar) using Plotly or Altair (`st.plotly_chart`).
+     - Tabular score summaries with expandable sections.
+     - Option to **download results (CSV/JSON)**.
+   - Add a **dedicated Results Tab** for full evaluation history.
+ - A run history panel (with timestamp, use case, focus, metrics, model, and summary scores).
+. Offer a **Compare Runs** page: select multiple runs and overlay their graphs & tables.
+
+6. 🎨 **Styling Enhancements**:
+   - Apply modern **custom CSS** or Streamlit themes:
+     - Bigger, bold headings (e.g., “🔍 GenAI Code Generation Evaluation”).
+     - **Rounded cards with shadow**, hover effects, smooth animations.
+   - Improve button and component styles using HTML + CSS in `streamlit.components.v1.html()`.
+
+7. 📱 **Responsive Design**:
+   - Ensure **mobile and tablet responsiveness**.
+   - Adjust layouts using `st.columns()` and `st.container()`.
+   - Use modern typography, iconography (FontAwesome/Lucide), and consistent spacing.
+   - Add tooltips/help popovers for each metric and focus.
+   - Show progress loaders, success/error toasts, and validation states.
+
+8. 🔧 **Future Features**:
+   - Add placeholders for **LLM comparison, Guardrail validation, RAG performance**, and **memory consistency scoring**.
+
+**Update the current Streamlit app design and improve the code according to the above requirements.**
