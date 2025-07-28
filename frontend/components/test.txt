@@ -1,92 +1,94 @@
-I am building a futuristic GenAI Validator platform using Streamlit, but the current implementation has serious design flaws and is not visually appealing or professional. I want you to take the **existing Streamlit app (currently in app_futuristic.py)** and update it with the following design and UI/UX improvements:
+I have an existing Streamlit-based GenAI Validator platform. Its core functionality works, but the UI looks dated, unprofessional, and incomplete—more like a college project than a polished product t.he design and UI feel unfinished, not stylish or client-ready. I want you to transform the app/platform and update the existing `styles.css` file to achieve a **futuristic, elegant, client-sellable SaaS-grade design**.
+
+Use the following instructions to update the UI across all key screens:
 
 ---
 
-🎬 LOGIN PAGE — Fullscreen Video & Futuristic Form
-- Make the background video **play fullscreen**, autoplaying, muted, looped, **with no controls**.
-- Overlay a **glassmorphism login form in the center** of the screen.
-- Login card must contain:
-  - Futuristic font (Orbitron, Poppins, Inter)
-  - Username, Email, Role (dropdown), and a glowing "Login" button
-- Apply a **dark overlay** or **blur effect** over the video so form fields stand out.
-- Animate the login form (fade-in, slide-in).
-- Remove any whitespace borders; the video should fully cover the screen.
+🎨 GLOBAL THEME — DARK, MODERN, CONSISTENT
+- Apply a **cohesive dark grey theme** with base colors like `#1F3B4D`, `#29465B`, or `#154672`.
+- Use high-contrast text: `#F0F0F0`.
+- Use typography:
+  - `'Orbitron'` for headings
+  - ``'Poppins'` or Roboto Slab for body text
+- Remove any light backgrounds and washed-out UI elements.
+- In your **existing `styles.css`**, include:
+  - Neon/glow button styles
+  - Card hover/lift animations
+  - Hover effects for tiles, buttons
+  - Styled metric pills
+  - Status badge styles (for system tiles and dashboards)
+  - Smooth transitions for components
+  - Sidebar + input styling in dark theme
 
 ---
 
-🎨 GLOBAL THEME & BACKGROUND
-- Convert the whole app into a **dark theme**:
-  - Use a dark grey/blue gradient background (`#0F111A`, `#1C1E29`, `#242631`)
-  - Light neon blue and green for buttons & active tabs
-  - White/gray text (`#F0F0F0`) on dark background
-- No white/bright backgrounds anywhere (dashboard, setup, metrics pages must all follow dark mode).
-- Add a central `style.css` file to apply:
-  - Custom fonts (Orbitron, Inter)
-  - Scrollbar styling
-  - Input hover transitions
-  - Glass-style cards and glowing buttons
+📸 LOGIN PAGE (Access Portal—with Background Image)
+- Use the current **background image** (already set).
+- Overlay a **glassmorphism-style login card**, centered.
+- Ensure login form uses:
+  - Custom fonts
+  - Glow-highlighted fields and button
+  - "Access Platform" button styled with a modern gradient
+- Animate on load (fade or slide) for smooth entry.
+- Animate the card with a soft fade-in.
+- Ensure fonts, spacing, and borders look clean on dark image background.
 
 ---
 
-📦 DASHBOARD LAYOUT (Fixes & Restoration)
-- Bring back the **Settings** tab in the left sidebar (it was removed in app_futuristic.py but existed in app_modern.py).
-- Sidebar should:
-  - Use modern glowing icons (Lucide, Feather, FontAwesome)
-  - Highlight active tabs with smooth transition/glow
-  - Avatar icon in top-right (or top of sidebar) with dropdown: Profile, Settings, Logout
-- All pages (Dataset, Evaluation, Results) must use the **same dark background** and consistent spacing.
+📊 DASHBOARD (Platform Overview)
+- Switch to dark backdrops (`1E3E62` or tinted dark gray).
+- Create clean **dashboard cards** for:
+  - Total Evaluations
+  - Active Datasets
+  - Average Performance
+- Each card should:
+  - Feature a glowing icon (avoid emojis or default icons)
+  - Show a large number in contrasting text
+  - Include subtitle text like “+X this week”
+- Use professional icons instead of emojis, from icon sets like Lucide, Phosphor, or Feather.
 
 ---
 
-📑 EVALUATION FOCUS AREAS & METRICS — Visual Overhaul
-- Remove all unnecessary icons (e.g., 🎯, 🚀, 🧠) next to labels like “Text Generation” and “Accuracy”.
-- Redesign **Focus Area** and **Metric pills**:
-  - Use beautiful pill buttons (soft border, glowing border on active)
-  - Font should be clean and bold
-  - Blue active state with smooth transitions (hover, click)
-- Fix the issue where raw HTML code (`<span class="...">`) is being shown on screen — this is likely due to unescaped HTML in `st.markdown()`. Either:
-  - Render it properly via `st.markdown(..., unsafe_allow_html=True)`
-  - OR rewrite the UI using native Streamlit elements (buttons, checkboxes, columns)
+⚡ SYSTEM STATUS & QUICK STATS
+- Transform tiles for API Server, DB, Queue, etc., into consistent glowing boxes:
+  - Status badges: e.g. “🟢 Ready” (green), “🟡 Queued” (yellow), “🔴 Down” (red)
+  - Use styled stats: “85 % Used” with color-coded progress bars
+- Organize Quick Stats and Recent Activity visually using grid layout and glass cards.
 
 ---
 
-📁 USE CASE / METRIC SELECTION — Refined Styling
-- Use Case dropdown ("Text Generation" etc.) must be restyled:
-  - Increase padding and font size
-  - Add hover effect
-  - Use capitalized styling or icons with label (optional)
-- Ensure use case section blends well into the page (not floating white cards or unstyled blocks)
+🧠 EVALUATION FOCUS & METRICS SELECTOR
+- Convert current metric options into **rounded, glowing pills**:
+  - Active pill: bright fill (blue or teal), white text
+  - Hover/active animations for UI feedback
+- Make Use Case and Focus Area labels bold and readable—no small or washed-out fonts.
+- Remove emoji or default icons; use minimal flat-design icons or just strong typographic pills.
 
 ---
 
-📊 RESULTS & ANALYSIS PAGE — Match Style + Function
-- Results page should:
-  - Use consistent dark styling with soft card containers
-  - Only show results for **selected metrics**, organized per sample
-  - Use color-coded badges for score ranges (High, Medium, Low)
-  - Include expandable rows if more metric scores exist
+🛠 TYPOGRAPHY & READABILITY ENHANCEMENTS
+- Fix faded headings like “Platform Overview”, “Quick Stats”, etc., ensuring:
+  - H1 (xxx): 32px, Orbitron, bold
+  - Section headings: 24px, Semibold Inter or Poppins
+  - Body text: 16px Inter or Poppins
+- Ensure visible contrast on all backgrounds, with consistent spacing and padding.
 
 ---
 
-🛠 CSS & STYLING SYSTEM
-- Create or update `styles.css` with:
-  - Custom fonts: Orbitron / Inter / Poppins
-  - Full dark theme override
-  - Glowing input borders
-  - Glassmorphism panels
-  - Video background styles
-  - Card hover/transition animations
-  - Remove white boxy elements completely
+📑 UPDATE EXISTING `styles.css`
+Modify the existing file to include:
+- Google Fonts imports (Orbitron + Inter/Poppins/Roboto Slab)
+- Body and background colors for dark theme
+- Glass card container styles with blur and glow
+- Hovered button styles and pill-class styles
+- Status badge styling
+-  `.status-badge` class for API/Queue/DB status labels
+- Input field theming, sidebar theming, and table styling
+- Modern scrollbar and input field restyling
 
----
-
-📌 MISC FIXES
-- Fix broken HTML display caused by unrendered raw code (`<span class="...">`)
-- Ensure no raw JS or HTML shows up in the UI
-- All font colors should be high-contrast for dark mode
 
 ---
 
 ✅ FINAL INSTRUCTION
+Update the current application code and `styles.css` file—**do not create a new one**—to implement all visual improvements above. The UI must now appear like a **client-ready, polished GenAI platform**, with consistent dark theme, readable typography, glowing accents, animated transitions, and professional layout across all pages.
 
-Update the **current Streamlit app (app_futuristic.py)** to meet all of the above requirements and restore any removed components like **Settings** tab. The final output must look futuristic, modern, clean, and usable as a commercial product. No placeholder-level visuals — everything must feel elegant, stylish, and polished.
