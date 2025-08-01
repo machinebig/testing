@@ -1,0 +1,63 @@
+🎯 Objective:
+Restore and enable all metric functionalities (especially hallucination, summarization, and text generation metrics) that were working earlier in `app_futuristic.py` (Streamlit version) but are currently not loading or are commented out in the React + FastAPI version. ✅ **No changes to the UI design/layout**. This prompt only focuses on logic, metrics, and evaluation flow.
+
+---
+
+🛠️ 1. Enable ALL Metrics (Uncomment & Restore Logic):
+
+- Re-enable any **commented-out metric registration lines** in:
+  - `hallucination_metrics.py`
+  - `text_generation_metrics.py`
+  - `toxicity_bias_metrics.py`
+  - `summarization_metrics.py`
+- Specifically ensure:
+  - `register_all_hallucination_metrics()` is called on module import.
+  - `register_text_generation_metrics()` and others are also triggered.
+- If metrics were previously **disabled due to missing dependencies**, re-enable them assuming all required dependencies are now available (like `transformers`, `scikit-learn`, etc.). Log warnings if unavailable, but **don’t suppress registration**.
+
+---
+
+✅ 2. Make Metrics Visible in UI Based on Selected Use Case:
+
+- Ensure metrics display **correctly in the React UI** when the use case is selected (e.g., Summarization, Text Generation, Hallucination, etc.).
+- Fix any broken mapping between backend-registered metrics and front-end category cards (like `Content Quality`, `Performance`, `Relevance`).
+- If metric filtering is based on column names (e.g., `ground_truth`, `generated_output`, etc.), allow **alias mapping** and flexible header checks:
+  - `ground_truth` == `expected_output`
+  - `actual` == `generated_output`
+  - `question` == `input`, etc.
+
+---
+
+📦 3. Metric Discovery Fix (Registry/API):
+
+- If React UI calls API to get available metrics per use case:
+  - Fix the route in FastAPI to return all registered metrics.
+  - Ensure metrics are not being filtered out silently.
+- Previously working `app_futuristic.py` logic should be ported 1:1.
+- Example: `register_metric()` or `METRIC_REGISTRY.register(...)` must reflect in `/metrics` API response.
+
+---
+
+🔁 4. Dependencies & Fallbacks:
+
+- If a metric depends on unavailable packages, log a warning (don’t fail silently).
+- Do **not disable metrics** from registration due to optional dependency checks.
+
+---
+
+🧠 Developer Note:
+
+- Don’t refactor layout or UI styles.
+- Don’t remove or comment metrics even if failing – just show a “dependency missing” badge if necessary.
+- Refer to `app_futuristic.py` for full working metric flow.
+
+---
+
+✅ Final Outcome:
+
+- All previously available metrics (BLEU, ROUGE, BERTScore, Hallucination, Summarization F1, Topic Consistency, etc.) are now restored and shown in the UI.
+- Metrics are visible for all use cases (Summarization, Text Generation, RAG, Code Gen, etc.).
+- Dataset validation logic continues to highlight missing columns (but allows alias mapping).
+- Evaluation runs with the correct selected metrics.
+
+Apply this without changing anything else in the design.
