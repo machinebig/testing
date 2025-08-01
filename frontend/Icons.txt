@@ -1,0 +1,16 @@
+🎯 Goal:
+Update only the **icons** across the GenAI validation app. Replace all **emoji-style icons** (🚀, 💻, ⚡️, 🧠, etc.) with **modern, clean, stylish icons** like the ones already used in the **left sidebar** (Dataset Upload, Evaluation Setup, Results & Analysis, Analytics).
+
+✅ Important Instructions:
+- ⚠️ **DO NOT make any changes to the existing UI layout or design** — only replace the emoji icons.
+- Use modern, minimal, matching icons from a consistent set like:
+  `react-icons/lu` (Lucide), `react-icons/md` (Material), or `react-icons/fi` (Feather).
+- Match the current sidebar style (e.g., upload arrow, gear, bar charts).
+- Icons should:
+  - Be left-aligned next to their labels
+  - Use consistent size (`size={22}`) and color (`color="#0ff"` or match existing)
+  - Blend well with the dark UI theme
+
+📦 Use imports like:
+```tsx
+import { LuUpload, LuSettings, LuBarChart3, LuBarChart4 } from 'react-icons/lu'
