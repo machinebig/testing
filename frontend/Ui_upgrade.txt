@@ -1,0 +1,70 @@
+I previously built a fully functional GenAI Validator app in **Streamlit** (`app_futuristic.py`), which included:
+
+- Sidebar navigation with:
+  - Evaluation
+  - Results
+  - Analytics
+- Dynamic use case selection (Text Generation, Summarization, Code Generation, Chatbot QA, RAG, Image Generation, Prompt Testing)
+- Per-use-case metric selection (e.g., Accuracy, Bias, Toxicity, Security, Maintainability)
+- Dataset upload (with validation for required columns like `input`, `ground_truth`, `expected`)
+- Evaluate button that triggered model evaluation and metric scoring
+- Per-sample result rendering: Input, Ground Truth, Output, Metric Scores
+- Downloadable results (CSV/JSON)
+- Conditional rendering of evaluation views based on selected use case and selected metrics
+
+Now, I’ve migrated the UI to **React**, which visually looks great and uses a clean layout — but is currently missing **all this functionality**.
+
+---
+
+### 🎯 TASK: Implement the exact same logic and flow from the original Streamlit app into this new React + FastAPI setup, without altering the existing UI structure or design.
+
+---
+
+✅ **What You Need to Add into React App (Based on Streamlit Logic)**
+
+1. **Sidebar Routing Functionality**
+   - Activate page content when user clicks: Evaluation, Results, Analytics
+
+2. **Evaluation Page Logic**
+   - Display list of Use Cases as clickable items
+   - On selecting a use case:
+     - Show relevant metric categories and metric toggles (as checkboxes or pills)
+     - Show dataset uploader
+     - Show evaluate button (enabled only when dataset + metrics selected)
+
+3. **Dataset Upload Logic**
+   - Accept `.csv`, `.json`, `.xlsx`
+   - Validate column headers dynamically based on use case
+   - Allow mapping alternate headers like `actual` == `ground_truth`
+
+4. **Metric Selection Behavior**
+   - Dynamically filter which metrics are shown per use case
+   - Allow multi-select
+   - Store selected metrics in local state (or global store)
+
+5. **Evaluation Trigger**
+   - On “Evaluate” button click:
+     - Send selected use case, metrics, and dataset to FastAPI `/evaluate` endpoint
+     - Show loader/spinner
+     - Await backend processing
+     - Show success message or error handling
+
+6. **Results Page Logic**
+   - Show per-sample results in a styled table:
+     - Input | Ground Truth | Generated | BLEU | G-Eval | Toxicity | etc.
+     - Only display **metrics the user selected**
+     - Enable export/download (CSV, JSON)
+
+7. **Analytics Page (Optional)**
+   - Show charts for metric distribution (bar, radar, line)
+   - Use Chart.js or Recharts
+
+---
+
+🧠 **Reference file for logic**: `app_futuristic.py`
+- Reuse the logic flow, backend interaction, and conditional display behavior from this file and port it into React components and FastAPI endpoints.
+
+📦 **Don’t touch the current styling or layout** — just plug in the logic.
+
+✅ **Final Objective**:
+Make the React app behave functionally just like the Streamlit app (`app_futuristic.py`) — including navigation, use case flow, metrics, upload, evaluation, and results — while keeping the new modern UI untouched.
