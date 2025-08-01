@@ -1,0 +1,60 @@
+🎯 Objective: Restore missing functional logic from the previous Streamlit GenAI Validator app into the current React + FastAPI setup **without changing the UI or design**. The layout and visual elements must remain exactly the same.
+
+---
+
+✅ 1. File Upload Behavior (Enhanced UX Flow):
+- Move the dataset file upload (CSV, Excel, JSON) to occur **after the evaluation use case is selected** — not on the initial screen.
+- Once a use case is selected (e.g., Text Generation, RAG, etc.), navigate or reveal the file upload section **on the next step/page/section**.
+- This should:
+  - Prevent confusion from scrolling.
+  - Allow for cleaner multi-step evaluation configuration.
+- Integrate the file upload with FastAPI as in the previous setup.
+- Maintain visual consistency — do **not** change any styling or add extra buttons.
+
+---
+
+✅ 2. Dataset Preview and Smart Column Validation:
+- After successful file upload, show a **preview table** of the uploaded dataset (just as in Streamlit).
+- Auto-detect and validate presence of required columns such as:
+  - `ground_truth`, `expected_output`, `actual`, `predicted`, `input`, `generated`, etc.
+- Apply flexible alias mapping:
+  - Treat `ground_truth` and `expected_output` as equivalent.
+  - Same for `actual` and `generated`, etc.
+- If any required columns are missing based on selected use case, show a **clear validation warning**, e.g.,:
+  - “Missing required column: `ground_truth` (or alias). Please check your dataset.”
+- All this logic was implemented in Streamlit — reuse or port it here.
+
+---
+
+✅ 3. Metric Filtering Logic (Uncomment + Restore):
+- The logic to dynamically show evaluation metrics based on selected use case was previously implemented but now commented out.
+- Restore (uncomment and connect) this logic so that:
+  - Only relevant metrics (e.g., BLEU, ROUGE for Text Generation) are shown depending on the use case.
+  - Do not show metrics unless dataset columns required for that metric are valid.
+- This filtering should be automatic once use case and dataset are selected.
+- Keep UI/UX untouched, just restore the functional behavior.
+
+---
+
+🧠 Developer Notes:
+- Restore all logic previously implemented in `app_futuristic.py` or backend modules.
+- Use FastAPI endpoints for data validation and results.
+- Any previews or errors must be integrated into existing component slots.
+
+---
+
+🚫 Don’t Do:
+- Don’t change layout, styles, themes, colors, fonts, or buttons.
+- Don’t reintroduce background video or make design-related changes.
+- Don’t duplicate upload buttons or rework the interface structure.
+
+---
+
+✅ Final Outcome:
+- Use case selection → moves to dataset upload
+- File upload → triggers backend check and preview
+- Preview shown + validation check for required columns
+- Metrics filtered based on valid use case and available data
+- Smooth API flow from one stage to next
+
+Make sure this end-to-end workflow mimics the original Streamlit behavior but with the new React + FastAPI architecture.
